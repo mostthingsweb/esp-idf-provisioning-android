@@ -76,11 +76,10 @@ public class BLEProvisionLanding extends AppCompatActivity {
 
 //    public static boolean isBleWorkDone = false;
 
-    private Button btnScan, btnPrefix;
+    private Button btnScan;
     private ListView listView;
     private TextView textPrefix;
     private ProgressBar progressBar;
-    private RelativeLayout prefixLayout;
 
     private BleDeviceListAdapter adapter;
     private BluetoothAdapter bleAdapter;
@@ -193,17 +192,12 @@ public class BLEProvisionLanding extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
-        switch (requestCode) {
-
-            case REQUEST_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    startScan();
-                } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                    finish();
-                }
+        if (requestCode == REQUEST_FINE_LOCATION) {// If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startScan();
+            } else if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                finish();
             }
-            break;
         }
     }
 
@@ -256,11 +250,11 @@ public class BLEProvisionLanding extends AppCompatActivity {
     private void initViews() {
 
         btnScan = findViewById(R.id.btn_scan);
-        btnPrefix = findViewById(R.id.btn_change_prefix);
+        Button btnPrefix = findViewById(R.id.btn_change_prefix);
         listView = findViewById(R.id.ble_devices_list);
         textPrefix = findViewById(R.id.prefix_value);
         progressBar = findViewById(R.id.ble_landing_progress_indicator);
-        prefixLayout = findViewById(R.id.prefix_layout);
+        RelativeLayout prefixLayout = findViewById(R.id.prefix_layout);
         textPrefix.setText(deviceNamePrefix);
 
         // Set visibility of Prefix layout

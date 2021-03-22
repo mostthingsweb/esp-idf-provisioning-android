@@ -61,6 +61,22 @@ public class WiFiScanActivity extends AppCompatActivity {
     private WiFiListAdapter adapter;
     private ArrayList<WiFiAccessPoint> wifiAPList;
     private ESPProvisionManager provisionManager;
+    private Runnable stopScanningTask = new Runnable() {
+
+        @Override
+        public void run() {
+
+            updateProgressAndScanBtn(false);
+        }
+    };
+    private View.OnClickListener refreshClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+
+            startWifiScan();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -293,24 +309,6 @@ public class WiFiScanActivity extends AppCompatActivity {
         provisionIntent.putExtra(AppConstants.KEY_WIFI_PASSWORD, password);
         startActivity(provisionIntent);
     }
-
-    private View.OnClickListener refreshClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-
-            startWifiScan();
-        }
-    };
-
-    private Runnable stopScanningTask = new Runnable() {
-
-        @Override
-        public void run() {
-
-            updateProgressAndScanBtn(false);
-        }
-    };
 
     /**
      * This method will update UI (Scan button enable / disable and progressbar visibility)

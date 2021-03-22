@@ -11,29 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+package com.espressif.ui.models
 
-package com.espressif.ui.models;
+import android.bluetooth.BluetoothDevice
 
-import android.bluetooth.BluetoothDevice;
-
-public class BleDevice {
-
-    private String name;
-    private BluetoothDevice bluetoothDevice;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BluetoothDevice getBluetoothDevice() {
-        return bluetoothDevice;
-    }
-
-    public void setBluetoothDevice(BluetoothDevice bluetoothDevice) {
-        this.bluetoothDevice = bluetoothDevice;
-    }
+class BleDevice {
+    var name: String? = null
+    var bluetoothDevice: BluetoothDevice? = null
 }
